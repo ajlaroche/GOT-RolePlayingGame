@@ -20,33 +20,61 @@
             <div class="col-6" id="characterSelection">
                 <h2>Your Character</h2>
                 <div class="row" id="characters">
-                    <div class="card">
+                    <div class="card" id="snow">
                         <div class="card-body">
                             <p class="card-text">Jon Snow</p>
                         </div>
-                        <img src="./assets/images/Jon_Snow.jpg" alt="Jon Snow">
+                        <img id="johnSnow" src="./assets/images/Jon_Snow.jpg" alt="Jon Snow">
                         <div class="card-body">
-                            <p class="card-text">health number here</p>
+                            <p class="card-text"><span id="snowHealth"></span></p>
                         </div>
                     </div>
-                    <div class="card">
-                            <div class="card-body">
-                                <p class="card-text">Jon Snow</p>
-                            </div>
-                            <img src="./assets/images/Jon_Snow.jpg" alt="Jon Snow">
-                            <div class="card-body">
-                                <p class="card-text">health number here</p>
-                            </div>
+                    <div class="card" id="khal">
+                        <div class="card-body">
+                            <p class="card-text">Khal Drogo</p>
                         </div>
+                        <img id="drogo" src="./assets/images/Khal_Drogo.jpg" alt="Khal Drogo">
+                        <div class="card-body">
+                            <p class="card-text"><span id="drogoHealth"></span></p>
+                        </div>
+                    </div>
+                    <div class="card" id="gregor">
+                        <div class="card-body">
+                            <p class="card-text">Gregor Clegane</p>
+                        </div>
+                        <img id="clegane" src="./assets/images/Gregor_Clegane.jpg" alt="Gregor Clegane">
+                        <div class="card-body">
+                            <p class="card-text"><span id="cleganeHealth"></span></p>
+                        </div>
+                    </div>
+                    <div class="card" id="lanister">
+                        <div class="card-body">
+                            <p class="card-text">Jaime Lanister</p>
+                        </div>
+                        <img id="jaimie" src="./assets/images/jaime.jpg" alt="Jaime Lanister">
+                        <div class="card-body">
+                            <p class="card-text"><span id="lanisterHealth"></span></p>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="col-6" id="enemyRemainng">
+            <div class="col-6" id="enemyRemaining">
                 <h2>Enemies Available to Attack</h2>
+                <div class="row" id="enemySelect"></div>
             </div>
         </div>
+        <div class="row" id="spacingRow">
+            <h2>Fighting Area</h2>
+            <button type="button" class="btn btn-primary" id="attackButton">Attack</button>
+        </div>
         <div class="row" id="mainBattleArea">
+            <div class="col-6" id="enemyDefender">
+                <h2>Defender</h2>
+                <div class="row" id="defenderArea"></div>
+
+            </div>
             <div class="col-6" id="defeatedCharacters"></div>
-            <div class="col-6" id="enenyDefender"></div>
+
         </div>
 
     </div>
