@@ -10,7 +10,7 @@ $(document).ready(function () {
     var myCharacterName = "";
     var myCharacterHealthPrint = "";
     var defenderHealthPrint = "";
-    var myCharacterAttack=0;
+    var myCharacterAttack = 0;
     // var restartbutton=$("<button>").attr("value","Restart").addClass("btn", "btn-primary","restartBtn");
 
     $("#snowHealth").text(jonSnow.healthPoints);
@@ -22,7 +22,7 @@ $(document).ready(function () {
     $("#characters").on("click", "#snow", function () {
         myCharacterName = jonSnow;
         myCharacterHealthPrint = $("#snowHealth");
-        myCharacterAttack=myCharacterName.attackPower;
+        myCharacterAttack = myCharacterName.attackPower;
         var enemy1 = $("#khal");
         var enemy2 = $("#gregor");
         var enemy3 = $("#lanister");
@@ -36,7 +36,7 @@ $(document).ready(function () {
     $("#characters").on("click", "#khal", function () {
         myCharacterName = khalDrogo;
         myCharacterHealthPrint = $("#drogoHealth");
-        myCharacterAttack=myCharacterName.attackPower;
+        myCharacterAttack = myCharacterName.attackPower;
         var enemy1 = $("#snow");
         var enemy2 = $("#gregor");
         var enemy3 = $("#lanister");
@@ -50,7 +50,7 @@ $(document).ready(function () {
     $("#characters").on("click", "#gregor", function () {
         myCharacterName = gregorClegane;
         myCharacterHealthPrint = $("#cleganeHealth");
-        myCharacterAttack=myCharacterName.attackPower;
+        myCharacterAttack = myCharacterName.attackPower;
         var enemy1 = $("#snow");
         var enemy2 = $("#khal");
         var enemy3 = $("#lanister");
@@ -64,7 +64,7 @@ $(document).ready(function () {
     $("#characters").on("click", "#lanister", function () {
         myCharacterName = jamieLanister;
         myCharacterHealthPrint = $("#lanisterHealth");
-        myCharacterAttack=myCharacterName.attackPower;
+        myCharacterAttack = myCharacterName.attackPower;
         var enemy1 = $("#snow");
         var enemy2 = $("#gregor");
         var enemy3 = $("#khal");
@@ -116,8 +116,8 @@ $(document).ready(function () {
 
     //Battle calculations
 
-    
-    
+
+
     $("#attackButton").on("click", function () {
         myCharacterName.healthPoints = (myCharacterName.healthPoints - defenderName.counterAttackPower);
         defenderName.healthPoints = (defenderName.healthPoints - myCharacterName.attackPower);
@@ -125,22 +125,27 @@ $(document).ready(function () {
         myCharacterHealthPrint.text(myCharacterName.healthPoints);
         defenderHealthPrint.text(defenderName.healthPoints);
 
-        if(myCharacterName.healthPoints<=0){
+        if (myCharacterName.healthPoints <= 0) {
             $("#attackComment").text("you've been defeated... GAME OVER!!!");
             $("#damageComment").empty();
             myCharacterHealthPrint.text("Dead");
             defenderHealthPrint.text("Winner");
             $("#attackButton").hide();
             $("#restartBtn").css("display", "inline")
-        }else {
-        $("#attackComment").text("You've attacked "+ defenderName.name + " for " + myCharacterName.attackPower + " damage.");
-        $("#damageComment").text(defenderName.name + " attacked you back for " + defenderName.counterAttackPower + " damage.");}
+        } else if (defenderName.healthPoints <= 0) {
+            $("#attackComment").text("You have defeater " + defenderName.name + " you can choose to fight another enemy");
+            $("#damageComment").empty();
+            $("#defeatedCharacters").append($(".defenderCard"));
+        } else {
+            $("#attackComment").text("You've attacked " + defenderName.name + " for " + myCharacterName.attackPower + " damage.");
+            $("#damageComment").text(defenderName.name + " attacked you back for " + defenderName.counterAttackPower + " damage.");
+        }
         myCharacterName.attackPower += myCharacterAttack;
 
 
     })
 
-    $("#restartBtn").on("click", function(){
+    $("#restartBtn").on("click", function () {
         location.reload();
     })
 
