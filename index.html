@@ -18,7 +18,7 @@
     <div class="container">
         <div class="row" id="mainSelectionArea">
             <div class="col-6" id="characterSelection">
-                <h2>Your Character</h2>
+                <h2> <span id="choose">Choose Your Character!</span> </h2>
                 <div class="row" id="characters">
                     <div class="card" id="snow">
                         <div class="card-body">
@@ -79,19 +79,22 @@
         </div>
         <div class="row" id="mainBattleArea">
             <div class="col-6" id="enemyDefender">
-                <h2>Defender</h2>
+                <h2><span id="chooseEnemy">Choose an Enemy!</span></h2>
                 <div class="row" id="defenderArea"></div>
                 <div class="row" id="commentArea">
                     <p>
                         <span id="attackComment"></span>
-                    </p><br>
+                    </p>
+                    <br>
                     <p>
                         <span id="damageComment"></span>
                     </p>
                 </div>
             </div>
-            <div class="col-6" id="defeatedCharacters"></div>
-
+            <div class="col-6" id="defeatedCharacters">
+                <h2>Defeated Characters</h2>
+                <div class="row" id="losersRow"></div>
+            </div>
         </div>
 
     </div>

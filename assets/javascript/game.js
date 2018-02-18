@@ -11,8 +11,8 @@ $(document).ready(function () {
     var myCharacterHealthPrint = "";
     var defenderHealthPrint = "";
     var myCharacterAttack = 0;
-    // var restartbutton=$("<button>").attr("value","Restart").addClass("btn", "btn-primary","restartBtn");
 
+    
     $("#snowHealth").text(jonSnow.healthPoints);
     $("#drogoHealth").text(khalDrogo.healthPoints);
     $("#cleganeHealth").text(gregorClegane.healthPoints);
@@ -20,6 +20,7 @@ $(document).ready(function () {
 
     //Select protagonist in this section
     $("#characters").on("click", "#snow", function () {
+        $("#choose").text("Your Character");
         myCharacterName = jonSnow;
         myCharacterHealthPrint = $("#snowHealth");
         myCharacterAttack = myCharacterName.attackPower;
@@ -34,6 +35,7 @@ $(document).ready(function () {
         enemy3.addClass("enemyCard");
     });
     $("#characters").on("click", "#khal", function () {
+        $("#choose").text("Your Character");
         myCharacterName = khalDrogo;
         myCharacterHealthPrint = $("#drogoHealth");
         myCharacterAttack = myCharacterName.attackPower;
@@ -48,6 +50,7 @@ $(document).ready(function () {
         enemy3.addClass("enemyCard");
     });
     $("#characters").on("click", "#gregor", function () {
+        $("#choose").text("Your Character");
         myCharacterName = gregorClegane;
         myCharacterHealthPrint = $("#cleganeHealth");
         myCharacterAttack = myCharacterName.attackPower;
@@ -62,6 +65,7 @@ $(document).ready(function () {
         enemy3.addClass("enemyCard");
     });
     $("#characters").on("click", "#lanister", function () {
+        $("#choose").text("Your Character");
         myCharacterName = jamieLanister;
         myCharacterHealthPrint = $("#lanisterHealth");
         myCharacterAttack = myCharacterName.attackPower;
@@ -75,9 +79,11 @@ $(document).ready(function () {
         enemy2.addClass("enemyCard");
         enemy3.addClass("enemyCard");
     });
+    
     //Select Antagonist in this section
     $("#enemySelect").on("click", "#snow", function () {
         if ($("#defenderArea").children().length === 0) {
+            $("#chooseEnemy").text("Defender");
             var defenderSelected = $("#snow");
             $("#defenderArea").append(defenderSelected);
             defenderSelected.addClass("defenderCard");
@@ -87,6 +93,7 @@ $(document).ready(function () {
     });
     $("#enemySelect").on("click", "#khal", function () {
         if ($("#defenderArea").children().length === 0) {
+            $("#chooseEnemy").text("Defender");
             var defenderSelected = $("#khal");
             $("#defenderArea").append(defenderSelected);
             defenderSelected.addClass("defenderCard");
@@ -96,6 +103,7 @@ $(document).ready(function () {
     });
     $("#enemySelect").on("click", "#gregor", function () {
         if ($("#defenderArea").children().length === 0) {
+            $("#chooseEnemy").text("Defender");
             var defenderSelected = $("#gregor");
             $("#defenderArea").append(defenderSelected);
             defenderSelected.addClass("defenderCard");
@@ -105,6 +113,7 @@ $(document).ready(function () {
     });
     $("#enemySelect").on("click", "#lanister", function () {
         if ($("#defenderArea").children().length === 0) {
+            $("#chooseEnemy").text("Defender");
             var defenderSelected = $("#lanister");
             $("#defenderArea").append(defenderSelected);
             defenderSelected.addClass("defenderCard");
@@ -119,31 +128,42 @@ $(document).ready(function () {
 
 
     $("#attackButton").on("click", function () {
-        myCharacterName.healthPoints = (myCharacterName.healthPoints - defenderName.counterAttackPower);
-        defenderName.healthPoints = (defenderName.healthPoints - myCharacterName.attackPower);
+        if ($("#defenderArea").children().length > 0) {     //Test if enemy has been seclected before performing battle calcs//
+            myCharacterName.healthPoints = (myCharacterName.healthPoints - defenderName.counterAttackPower);
+            defenderName.healthPoints = (defenderName.healthPoints - myCharacterName.attackPower);
 
-        myCharacterHealthPrint.text(myCharacterName.healthPoints);
-        defenderHealthPrint.text(defenderName.healthPoints);
+            myCharacterHealthPrint.text(myCharacterName.healthPoints);
+            defenderHealthPrint.text(defenderName.healthPoints);
 
-        if (myCharacterName.healthPoints <= 0) {
-            $("#attackComment").text("you've been defeated... GAME OVER!!!");
-            $("#damageComment").empty();
-            myCharacterHealthPrint.text("Dead");
-            defenderHealthPrint.text("Winner");
-            $("#attackButton").hide();
-            $("#restartBtn").css("display", "inline")
-        } else if (defenderName.healthPoints <= 0) {
-            $("#attackComment").text("You have defeater " + defenderName.name + " you can choose to fight another enemy");
-            $("#damageComment").empty();
-            $("#defeatedCharacters").append($(".defenderCard"));
+            if (myCharacterName.healthPoints <= 0) {
+                $("#attackComment").text("you've been defeated... GAME OVER!!!");
+                $("#damageComment").empty();
+                myCharacterHealthPrint.text("Dead");
+                defenderHealthPrint.text("Winner");
+                $("#attackButton").hide();
+                $("#restartBtn").css("display", "inline")
+            } else if (defenderName.healthPoints <= 0) {
+                $("#attackComment").text("You have defeated " + defenderName.name + ". You can choose to fight another enemy");
+                $("#chooseEnemy").text("Choose an Enemy!");  
+                $("#damageComment").empty();
+                defenderHealthPrint.text("Dead");
+                $("#losersRow").append($(".defenderCard").addClass("defeatedCard"));
+                if ($("#losersRow").children().length === 3) {
+                    $("#attackButton").hide();
+                    $("#chooseEnemy").text("YOU WON!");  
+                    $("#restartBtn").css("display", "inline")
+                }
+            } else {
+                $("#attackComment").text("You've attacked " + defenderName.name + " for " + myCharacterName.attackPower + " damage.");
+                $("#damageComment").text(defenderName.name + " attacked you back for " + defenderName.counterAttackPower + " damage.");
+            }
+            myCharacterName.attackPower += myCharacterAttack;
         } else {
-            $("#attackComment").text("You've attacked " + defenderName.name + " for " + myCharacterName.attackPower + " damage.");
-            $("#damageComment").text(defenderName.name + " attacked you back for " + defenderName.counterAttackPower + " damage.");
+            $("#chooseEnemy").text("Choose an Enemy!");  
         }
-        myCharacterName.attackPower += myCharacterAttack;
-
-
+        
     })
+
 
     $("#restartBtn").on("click", function () {
         location.reload();

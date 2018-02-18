@@ -12,7 +12,7 @@ header{
     max-width: 25%;
     /* max-height: 30%; */
     height: 150px;
-    margin-top: 3rem;
+    margin: 0.5rem;
    }
 .card-body{
     max-width: 100%;
@@ -49,15 +49,18 @@ header{
     display: block;
 }
 .enemyCard{
-    background-color: red;
+    background-color:yellow;
 }
 .defenderCard{
-    background-color:white;
+    background-color:yellow;
     border-color: red;
     border-style: solid;
     border-width: 5px;
     margin-top: 1rem;
 }
+.defeatedCard{
+    background-color: red;
+    }
 #attackButton{
     margin: 1.5rem;
     background-color: springgreen;
