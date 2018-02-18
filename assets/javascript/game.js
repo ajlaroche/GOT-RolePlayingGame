@@ -2,10 +2,16 @@ $(document).ready(function () {
 
     //Define charactors in this section
 
-    var jonSnow = { healthPoints: 110, attackPower: 8, counterAttackPower: 12 };
-    var khalDrogo = { healthPoints: 150, attackPower: 20, counterAttackPower: 25 };
-    var gregorClegane = { healthPoints: 180, attackPower: 30, counterAttackPower: 25 };
-    var jamieLanister = { healthPoints: 90, attackPower: 5, counterAttackPower: 15 };
+    var jonSnow = { name: "Jon Snow", healthPoints: 110, attackPower: 8, counterAttackPower: 12 };
+    var khalDrogo = { name: "Khal Drogo", healthPoints: 150, attackPower: 20, counterAttackPower: 25 };
+    var gregorClegane = { name: "Gregor Clegane", healthPoints: 180, attackPower: 30, counterAttackPower: 25 };
+    var jamieLanister = { name: "Jamie Lanister", healthPoints: 90, attackPower: 5, counterAttackPower: 15 };
+    var defenderName = "";
+    var myCharacterName = "";
+    var myCharacterHealthPrint = "";
+    var defenderHealthPrint = "";
+    var myCharacterAttack=0;
+    // var restartbutton=$("<button>").attr("value","Restart").addClass("btn", "btn-primary","restartBtn");
 
     $("#snowHealth").text(jonSnow.healthPoints);
     $("#drogoHealth").text(khalDrogo.healthPoints);
@@ -14,7 +20,9 @@ $(document).ready(function () {
 
     //Select protagonist in this section
     $("#characters").on("click", "#snow", function () {
-        $("#snow").addClass("myCharacter");
+        myCharacterName = jonSnow;
+        myCharacterHealthPrint = $("#snowHealth");
+        myCharacterAttack=myCharacterName.attackPower;
         var enemy1 = $("#khal");
         var enemy2 = $("#gregor");
         var enemy3 = $("#lanister");
@@ -26,6 +34,9 @@ $(document).ready(function () {
         enemy3.addClass("enemyCard");
     });
     $("#characters").on("click", "#khal", function () {
+        myCharacterName = khalDrogo;
+        myCharacterHealthPrint = $("#drogoHealth");
+        myCharacterAttack=myCharacterName.attackPower;
         var enemy1 = $("#snow");
         var enemy2 = $("#gregor");
         var enemy3 = $("#lanister");
@@ -37,7 +48,9 @@ $(document).ready(function () {
         enemy3.addClass("enemyCard");
     });
     $("#characters").on("click", "#gregor", function () {
-
+        myCharacterName = gregorClegane;
+        myCharacterHealthPrint = $("#cleganeHealth");
+        myCharacterAttack=myCharacterName.attackPower;
         var enemy1 = $("#snow");
         var enemy2 = $("#khal");
         var enemy3 = $("#lanister");
@@ -49,6 +62,9 @@ $(document).ready(function () {
         enemy3.addClass("enemyCard");
     });
     $("#characters").on("click", "#lanister", function () {
+        myCharacterName = jamieLanister;
+        myCharacterHealthPrint = $("#lanisterHealth");
+        myCharacterAttack=myCharacterName.attackPower;
         var enemy1 = $("#snow");
         var enemy2 = $("#gregor");
         var enemy3 = $("#khal");
@@ -65,6 +81,8 @@ $(document).ready(function () {
             var defenderSelected = $("#snow");
             $("#defenderArea").append(defenderSelected);
             defenderSelected.addClass("defenderCard");
+            defenderName = jonSnow;
+            defenderHealthPrint = $("#snowHealth");
         }
     });
     $("#enemySelect").on("click", "#khal", function () {
@@ -72,6 +90,8 @@ $(document).ready(function () {
             var defenderSelected = $("#khal");
             $("#defenderArea").append(defenderSelected);
             defenderSelected.addClass("defenderCard");
+            defenderName = khalDrogo;
+            defenderHealthPrint = $("#drogoHealth");
         }
     });
     $("#enemySelect").on("click", "#gregor", function () {
@@ -79,6 +99,8 @@ $(document).ready(function () {
             var defenderSelected = $("#gregor");
             $("#defenderArea").append(defenderSelected);
             defenderSelected.addClass("defenderCard");
+            defenderName = gregorClegane;
+            defenderHealthPrint = $("#cleganeHealth");
         }
     });
     $("#enemySelect").on("click", "#lanister", function () {
@@ -86,29 +108,40 @@ $(document).ready(function () {
             var defenderSelected = $("#lanister");
             $("#defenderArea").append(defenderSelected);
             defenderSelected.addClass("defenderCard");
+            defenderName = jamieLanister;
+            defenderHealthPrint = $("#lanisterHealth");
         }
     });
 
-    //Battle calculations
-    var protagonistHealth = 0;
-    var protagonistPower =0;
-    var defenderPower = 0;
-    var defenderHealth =0;
-    if ($(".myCharacter").has("#snow")) {
-        protagonistHealth = jonSnow.healthPoints;
-        protagonistPower = jonSnow.attackPower;
-    }
-    if($("#defenderArea").has("#khal")){
-        defenderPower= khalDrogo.counterAttackPower;
-        defenderHealth=khalDrogo.healthPoints;
-    }
 
-        $("#attackButton").on("click", function () {
-            protagonistHealth=protagonistHealth-defenderPower;
-            defenderHealth=defenderHealth-protagonistPower;
-            $("#snowHealth").text(protagonistHealth);
-            $("#drogoHealth").text(defenderHealth);
-        
+    //Battle calculations
+
+    
+    
+    $("#attackButton").on("click", function () {
+        myCharacterName.healthPoints = (myCharacterName.healthPoints - defenderName.counterAttackPower);
+        defenderName.healthPoints = (defenderName.healthPoints - myCharacterName.attackPower);
+
+        myCharacterHealthPrint.text(myCharacterName.healthPoints);
+        defenderHealthPrint.text(defenderName.healthPoints);
+
+        if(myCharacterName.healthPoints<=0){
+            $("#attackComment").text("you've been defeated... GAME OVER!!!");
+            $("#damageComment").empty();
+            myCharacterHealthPrint.text("Dead");
+            defenderHealthPrint.text("Winner");
+            $("#attackButton").hide();
+            $("#restartBtn").css("display", "inline")
+        }else {
+        $("#attackComment").text("You've attacked "+ defenderName.name + " for " + myCharacterName.attackPower + " damage.");
+        $("#damageComment").text(defenderName.name + " attacked you back for " + defenderName.counterAttackPower + " damage.");}
+        myCharacterName.attackPower += myCharacterAttack;
+
+
+    })
+
+    $("#restartBtn").on("click", function(){
+        location.reload();
     })
 
 });

@@ -10,7 +10,9 @@ header{
 .card{
     color: black;
     max-width: 25%;
-    max-height: 30%;
+    /* max-height: 30%; */
+    height: 150px;
+    margin-top: 3rem;
    }
 .card-body{
     max-width: 100%;
@@ -54,6 +56,7 @@ header{
     border-color: red;
     border-style: solid;
     border-width: 5px;
+    margin-top: 1rem;
 }
 #attackButton{
     margin: 1.5rem;
@@ -63,3 +66,11 @@ header{
     font-size: 1.5rem;
     width: 9rem;
     }
+
+#restartBtn{
+    margin: 1.5rem;
+    padding: 0.5rem;
+    font-size: 1.5rem;
+    width: 9rem;
+    display: none;
+}
