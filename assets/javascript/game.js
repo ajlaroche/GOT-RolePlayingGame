@@ -87,6 +87,7 @@ $(document).ready(function () {
             var defenderSelected = $("#snow");
             $("#defenderArea").append(defenderSelected);
             defenderSelected.addClass("defenderCard");
+            $("#characters").children().addClass("protagonistCard");
             defenderName = jonSnow;
             defenderHealthPrint = $("#snowHealth");
         }
@@ -97,6 +98,7 @@ $(document).ready(function () {
             var defenderSelected = $("#khal");
             $("#defenderArea").append(defenderSelected);
             defenderSelected.addClass("defenderCard");
+            $("#characters").children().addClass("protagonistCard");
             defenderName = khalDrogo;
             defenderHealthPrint = $("#drogoHealth");
         }
@@ -107,6 +109,8 @@ $(document).ready(function () {
             var defenderSelected = $("#gregor");
             $("#defenderArea").append(defenderSelected);
             defenderSelected.addClass("defenderCard");
+            $("#characters").children().addClass("protagonistCard");
+
             defenderName = gregorClegane;
             defenderHealthPrint = $("#cleganeHealth");
         }
@@ -117,6 +121,7 @@ $(document).ready(function () {
             var defenderSelected = $("#lanister");
             $("#defenderArea").append(defenderSelected);
             defenderSelected.addClass("defenderCard");
+            $("#characters").children().addClass("protagonistCard");
             defenderName = jamieLanister;
             defenderHealthPrint = $("#lanisterHealth");
         }
@@ -138,6 +143,7 @@ $(document).ready(function () {
             if (myCharacterName.healthPoints <= 0) {
                 $("#attackComment").text("you've been defeated... GAME OVER!!!");
                 $("#damageComment").empty();
+                $("#characters").children().addClass("defeatedCard");
                 myCharacterHealthPrint.text("Dead");
                 defenderHealthPrint.text("Winner");
                 $("#attackButton").hide();

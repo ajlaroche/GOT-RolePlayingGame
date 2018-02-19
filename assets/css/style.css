@@ -1,16 +1,35 @@
 body{
-    background-image: url("../images/game-of-thrones.jpg");
-    color: aliceblue;
+    background-image: url("../images/fresh_snow.png");
+    color: black;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 header{
-    height: 7rem;
     text-align: center;
     padding-top: 1rem;
+    }
+ #headerRow{
+     background: black;
+   }   
+#titleImage{
+    height: 9rem;
+    float: right;
 }
+.headerCol{
+    align-content: center;
+    margin-left: 25%;
+    margin-right: 25%;
+}
+h1{
+    padding: 2rem;
+    float: left;
+    background-color: black;
+    color: silver;
+    font-size: 4rem;
+    font-family: 'Berkshire Swash', cursive;
+    }
 .card{
     color: black;
-    max-width: 25%;
-    /* max-height: 30%; */
+    width: 30%;
     height: 150px;
     margin: 0.5rem;
    }
@@ -18,31 +37,37 @@ header{
     max-width: 100%;
     max-height: 30%;
     padding: 0rem;
-    margin-top: 0.5rem;
+    margin-top: 0.25rem;
     font-size: 0.8rem;
     text-align: center;
 }
-#characters{
+/* #characters{
     height: 30rem;
-}
+} */
 #johnSnow{
     width: 100%;
     height: auto;
 }
 #drogo{
     width: 50%;
-    height: 50%;
-    margin-left: 2rem;
-}
+    margin-left: 25%;
+    margin-right: 10%;
+    max-height: 65%;
+    }
 #clegane{
     width: 50%;
-    height: 50%;
-    margin-left: 2rem;
+    margin-left: 25%;
+    margin-right: 10%;
+    max-height: 65%;
 }
 #jaimie{
     width: 50%;
-    height: 50%;
-    margin-left: 2rem;
+    margin-left: 25%;
+    margin-right: 10%;
+    max-height: 65%;
+    }
+#headerSpace{
+    height: 3rem;
 }
 #spacingRow{
     height: 10rem;
@@ -50,6 +75,10 @@ header{
 }
 .enemyCard{
     background-color:yellow;
+    border-color:yellow;
+    border-style: solid;
+    border-width: 5px;
+    margin-top: 1rem;
 }
 .defenderCard{
     background-color:yellow;
@@ -60,7 +89,17 @@ header{
 }
 .defeatedCard{
     background-color: red;
+    border-color: red;
+    border-style: solid;
+    border-width: 5px;
+    margin-top: 1rem;
     }
+.protagonistCard{
+    border-color:green;
+    border-style: solid;
+    border-width: 5px;
+    margin-top: 1rem;
+}
 #attackButton{
     margin: 1.5rem;
     background-color: springgreen;
@@ -76,4 +115,7 @@ header{
     font-size: 1.5rem;
     width: 9rem;
     display: none;
+}
+.col-6{
+    padding-left: 0px;
 }
