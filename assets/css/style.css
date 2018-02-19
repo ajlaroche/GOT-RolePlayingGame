@@ -49,22 +49,16 @@ h1{
     height: auto;
 }
 #drogo{
-    width: 50%;
-    margin-left: 25%;
-    margin-right: 10%;
-    max-height: 65%;
-    }
+    width: 100%;
+    height: auto;
+        }
 #clegane{
-    width: 50%;
-    margin-left: 25%;
-    margin-right: 10%;
-    max-height: 65%;
+    width: 100%;
+    height: auto;
 }
 #jaimie{
-    width: 50%;
-    margin-left: 25%;
-    margin-right: 10%;
-    max-height: 65%;
+    width: 100%;
+    height: auto;
     }
 #headerSpace{
     height: 3rem;
