@@ -56,6 +56,9 @@ h1{
     height: 10rem;
     display: block;
 }
+#commentArea{
+    margin-left: 0rem;
+}
 .enemyCard{
     background-color:yellow;
     border-color:yellow;
