@@ -44,22 +44,11 @@ h1{
 #characters{
     margin-left: 0rem;
 }
-#johnSnow{
+.characterPic{
     width: 100%;
     height: auto;
 }
-#drogo{
-    width: 100%;
-    height: auto;
-        }
-#clegane{
-    width: 100%;
-    height: auto;
-}
-#jaime{
-    width: 100%;
-    height: auto;
-    }
+
 #headerSpace{
     height: 3rem;
 }
