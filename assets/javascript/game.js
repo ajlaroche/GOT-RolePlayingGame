@@ -2,10 +2,10 @@ $(document).ready(function () {
 
     //Define charactors in this section
 
-    var jonSnow = { name: "Jon Snow", healthPoints: 110, attackPower: 8, counterAttackPower: 12 };
-    var khalDrogo = { name: "Khal Drogo", healthPoints: 150, attackPower: 20, counterAttackPower: 25 };
-    var gregorClegane = { name: "Gregor Clegane", healthPoints: 180, attackPower: 30, counterAttackPower: 25 };
-    var jamieLanister = { name: "Jamie Lanister", healthPoints: 90, attackPower: 5, counterAttackPower: 15 };
+    var jonSnow = { name: "Jon Snow", healthPoints: 110, attackPower: 15, counterAttackPower: 15 };
+    var khalDrogo = { name: "Khal Drogo", healthPoints: 120, attackPower: 15, counterAttackPower: 8 };
+    var gregorClegane = { name: "Gregor Clegane", healthPoints: 130, attackPower: 20, counterAttackPower: 10 };
+    var jamieLanister = { name: "Jamie Lanister", healthPoints: 100, attackPower: 12, counterAttackPower: 25 };
     var defenderName = "";
     var myCharacterName = "";
     var myCharacterHealthPrint = "";
@@ -157,7 +157,11 @@ $(document).ready(function () {
                 if ($("#losersRow").children().length === 3) {
                     $("#attackButton").hide();
                     $("#chooseEnemy").text("YOU WON!");  
-                    $("#restartBtn").css("display", "inline")
+                    $("#attackComment").empty();
+                    setTimeout(function(){
+                        $("#restartBtn").css("display", "inline")
+                    },2000)
+                    
                 }
             } else {
                 $("#attackComment").text("You've attacked " + defenderName.name + " for " + myCharacterName.attackPower + " damage.");
@@ -169,7 +173,6 @@ $(document).ready(function () {
         }
         
     })
-
 
     $("#restartBtn").on("click", function () {
         location.reload();
