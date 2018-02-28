@@ -19,14 +19,34 @@ $(document).ready(function () {
     $("#lanisterHealth").text(jamieLanister.healthPoints);
 
     //Select protagonist in this section
-    $("#characters").on("click", "#snow", function () {
+    $("#characters").on("click", ".card", function () {
         $("#choose").text("Your Character");
-        myCharacterName = jonSnow;
-        myCharacterHealthPrint = $("#snowHealth");
+        if ($(this).attr("id") === "snow") {
+            myCharacterName = jonSnow;
+            myCharacterHealthPrint = $("#snowHealth");
+            var enemy1 = $("#khal");
+            var enemy2 = $("#gregor");
+            var enemy3 = $("#lanister");
+        } else if ($(this).attr("id") === "khal") {
+            myCharacterName = khalDrogo;
+            myCharacterHealthPrint = $("#drogoHealth");
+            var enemy1 = $("#snow");
+            var enemy2 = $("#gregor");
+            var enemy3 = $("#lanister");
+        } else if ($(this).attr("id") === "gregor") {
+            myCharacterName = gregorClegane;
+            myCharacterHealthPrint = $("#cleganeHealth");
+            var enemy1 = $("#snow");
+            var enemy2 = $("#khal");
+            var enemy3 = $("#lanister");
+        } else {
+            myCharacterName = jamieLanister;
+            myCharacterHealthPrint = $("#lanisterHealth");
+            var enemy1 = $("#snow");
+            var enemy2 = $("#gregor");
+            var enemy3 = $("#khal");
+        }
         myCharacterAttack = myCharacterName.attackPower;
-        var enemy1 = $("#khal");
-        var enemy2 = $("#gregor");
-        var enemy3 = $("#lanister");
         $("#enemySelect").append(enemy1);
         $("#enemySelect").append(enemy2);
         $("#enemySelect").append(enemy3);
@@ -34,100 +54,34 @@ $(document).ready(function () {
         enemy2.addClass("enemyCard");
         enemy3.addClass("enemyCard");
     });
-    $("#characters").on("click", "#khal", function () {
-        $("#choose").text("Your Character");
-        myCharacterName = khalDrogo;
-        myCharacterHealthPrint = $("#drogoHealth");
-        myCharacterAttack = myCharacterName.attackPower;
-        var enemy1 = $("#snow");
-        var enemy2 = $("#gregor");
-        var enemy3 = $("#lanister");
-        $("#enemySelect").append(enemy1);
-        $("#enemySelect").append(enemy2);
-        $("#enemySelect").append(enemy3);
-        enemy1.addClass("enemyCard");
-        enemy2.addClass("enemyCard");
-        enemy3.addClass("enemyCard");
-    });
-    $("#characters").on("click", "#gregor", function () {
-        $("#choose").text("Your Character");
-        myCharacterName = gregorClegane;
-        myCharacterHealthPrint = $("#cleganeHealth");
-        myCharacterAttack = myCharacterName.attackPower;
-        var enemy1 = $("#snow");
-        var enemy2 = $("#khal");
-        var enemy3 = $("#lanister");
-        $("#enemySelect").append(enemy1);
-        $("#enemySelect").append(enemy2);
-        $("#enemySelect").append(enemy3);
-        enemy1.addClass("enemyCard");
-        enemy2.addClass("enemyCard");
-        enemy3.addClass("enemyCard");
-    });
-    $("#characters").on("click", "#lanister", function () {
-        $("#choose").text("Your Character");
-        myCharacterName = jamieLanister;
-        myCharacterHealthPrint = $("#lanisterHealth");
-        myCharacterAttack = myCharacterName.attackPower;
-        var enemy1 = $("#snow");
-        var enemy2 = $("#gregor");
-        var enemy3 = $("#khal");
-        $("#enemySelect").append(enemy1);
-        $("#enemySelect").append(enemy2);
-        $("#enemySelect").append(enemy3);
-        enemy1.addClass("enemyCard");
-        enemy2.addClass("enemyCard");
-        enemy3.addClass("enemyCard");
-    });
+
 
     //Select Antagonist in this section
-    $("#enemySelect").on("click", "#snow", function () {
+    $("#enemySelect").on("click", ".card", function () {
         if ($("#defenderArea").children().length === 0) {
             $("#chooseEnemy").text("Defender");
             $("#attackComment").empty();
-            var defenderSelected = $("#snow");
-            $("#defenderArea").append(defenderSelected);
-            defenderSelected.addClass("defenderCard");
-            $("#characters").children().addClass("protagonistCard");
-            defenderName = jonSnow;
-            defenderHealthPrint = $("#snowHealth");
-        }
-    });
-    $("#enemySelect").on("click", "#khal", function () {
-        if ($("#defenderArea").children().length === 0) {
-            $("#chooseEnemy").text("Defender");
-            $("#attackComment").empty();
-            var defenderSelected = $("#khal");
-            $("#defenderArea").append(defenderSelected);
-            defenderSelected.addClass("defenderCard");
-            $("#characters").children().addClass("protagonistCard");
-            defenderName = khalDrogo;
-            defenderHealthPrint = $("#drogoHealth");
-        }
-    });
-    $("#enemySelect").on("click", "#gregor", function () {
-        if ($("#defenderArea").children().length === 0) {
-            $("#chooseEnemy").text("Defender");
-            $("#attackComment").empty();
-            var defenderSelected = $("#gregor");
+            if ($(this).attr("id") === "snow") {
+                var defenderSelected = $("#snow");
+                defenderName = jonSnow;
+                defenderHealthPrint = $("#snowHealth");
+            } else if ($(this).attr("id") === "khal") {
+                var defenderSelected = $("#khal");
+                defenderName = khalDrogo;
+                defenderHealthPrint = $("#drogoHealth");
+            } else if ($(this).attr("id") === "gregor") {
+                var defenderSelected = $("#gregor");
+                defenderName = gregorClegane;
+                defenderHealthPrint = $("#cleganeHealth");
+            } else {
+                var defenderSelected = $("#lanister");
+                defenderName = jamieLanister;
+                defenderHealthPrint = $("#lanisterHealth");
+            }
             $("#defenderArea").append(defenderSelected);
             defenderSelected.addClass("defenderCard");
             $("#characters").children().addClass("protagonistCard");
 
-            defenderName = gregorClegane;
-            defenderHealthPrint = $("#cleganeHealth");
-        }
-    });
-    $("#enemySelect").on("click", "#lanister", function () {
-        if ($("#defenderArea").children().length === 0) {
-            $("#chooseEnemy").text("Defender");
-            $("#attackComment").empty();
-            var defenderSelected = $("#lanister");
-            $("#defenderArea").append(defenderSelected);
-            defenderSelected.addClass("defenderCard");
-            $("#characters").children().addClass("protagonistCard");
-            defenderName = jamieLanister;
-            defenderHealthPrint = $("#lanisterHealth");
         }
     });
 
@@ -151,7 +105,10 @@ $(document).ready(function () {
                 myCharacterHealthPrint.text("Dead");
                 defenderHealthPrint.text("Winner");
                 $("#attackButton").hide();
-                $("#restartBtn").css("display", "inline")
+                setTimeout(function(){
+                    $("#restartBtn").css("display", "inline")
+                }, 2000);
+                
             } else if (defenderName.healthPoints <= 0) {
                 $("#attackComment").text("You have defeated " + defenderName.name + ". You can choose to fight another enemy");
                 $("#chooseEnemy").text("Choose an Enemy!");
@@ -164,7 +121,7 @@ $(document).ready(function () {
                     $("#attackComment").empty();
                     setTimeout(function () {
                         $("#restartBtn").css("display", "inline")
-                    }, 2000)
+                    }, 2000);
 
                 }
             } else {
